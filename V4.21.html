@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Elyot Benard - Dessinateur Industriel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange-industrial: #ff002f;
+        }
+        /*
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Dessin de la grille grise *//*
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90px, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px; /* Taille des carreaux */
+           /* z-index: -1;
+        }*/
+
+        body {
+            background-color: #0A0A0A;
+            overflow-x: hidden;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .grid-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-image: 
+                linear-gradient(to right, #1A1A1A 1px, transparent 1px),
+                linear-gradient(to bottom, #1A1A1A 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+
+        /* Fond de page unique : Quadrillage industriel */
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, #1a1a1a 1px, transparent 1px),
+                linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .grid-light {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(to right, var(--orange-industrial) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--orange-industrial) 1px, transparent 1px);
+            background-size: 40px 40px;
+            /* Le masque qui suit la souris */
+            -webkit-mask-image: radial-gradient(circle 150px at var(--mouse-x, 0) var(--mouse-y, 0), black 0%, transparent 100%);
+            mask-image: radial-gradient(circle 150px at var(--mouse-x, 0) var(--mouse-y, 0), black 0%, transparent 100%);
+        }
+
+        /* Effet de lueur orange interactive */
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .orange-accent { color: var(--orange-industrial); }
+        .bg-orange { background-color: var(--orange-industrial); }
+        .border-orange { border-color: var(--orange-industrial); }
+
+        /* Style des cartes d'expérience */
+        .exp-card {
+            background: #161616;
+            border-left: 4px solid var(--orange-industrial);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .exp-card:hover {
+            transform: scale(1.02) translateX(10px);
+            background: #1d1d1d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="">
+    <div class="grid-layer"></div>
+    <div class="grid-light"></div>
+
+
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold text-xl tracking-tighter uppercase">Elyot <span class="orange-accent">Benard</span></span>
+            <div class="hidden md:flex space-x-8 text-xs uppercase font-bold tracking-widest">
+                <a href="#exp" class="hover:text-[#ff6600] transition">Expériences</a>
+                <a href="#formations" class="hover:text-[#ff6600] transition">Formations</a>
+                <a href="#cv" class="hover:text-[#ff6600] transition">CV</a>
+                <a href="#contact" class="orange-accent">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex flex-col justify-center items-center text-center px-6 z-10">
+        <div class="reveal active">
+            <span class="inline-block px-3 py-1 border border-orange text-[10px] font-bold tracking-[0.3em] uppercase mb-6 orange-accent">Portfolio Technique</span>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-none">DESSINATEUR <br><span class="orange-accent">INDUSTRIEL</span></h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
+                Conception mécanique, modélisation 3D et expertise technique.
+            </p>
+            <div class="mt-12">
+                <a href="#exp" class="bg-orange text-black font-black px-10 py-4 text-sm uppercase tracking-widest hover:bg-white transition-colors duration-300">
+                    Découvrir mes travaux
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="exp" class="relative z-10 max-w-5xl mx-auto py-32 px-6">
+        <h2 class="text-4xl font-black mb-16 reveal uppercase italic">/ Expériences <span class="orange-accent">pro</span></h2>
+        
+        <div class="space-y-8">
+            <div class="exp-card p-8 reveal group">
+                <div class="flex flex-col md:flex-row justify-between mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold group-hover:text-[#ff6600] transition-colors">DESSINATEUR-PROJETEUR</h3>
+                        <p class="text-gray-400 font-medium">AéroTech Industries</p>
+                    </div>
+                    <span class="text-orange-industrial font-bold md:text-right mt-2 md:mt-0">2022 - Présent</span>
+                </div>
+                <ul class="text-gray-400 space-y-3 list-none">
+                    <li class="flex items-center"><span class="mr-2 text-orange-industrial">▹</span> Modélisation de pièces complexes sous SolidWorks.</li>
+                    <li class="flex items-center"><span class="mr-2 text-orange-industrial">▹</span> Optimisation des processus de fabrication et mise en plan.</li>
+                </ul>
+            </div>
+
+            <div class="exp-card p-8 reveal group">
+                <div class="flex flex-col md:flex-row justify-between mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold group-hover:text-[#ff6600] transition-colors">TECHNICIEN BUREAU D'ÉTUDES</h3>
+                        <p class="text-gray-400 font-medium">MecaDesign SAS</p>
+                    </div>
+                    <span class="text-orange-industrial font-bold md:text-right mt-2 md:mt-0">2020 - 2022</span>
+                </div>
+                <ul class="text-gray-400 space-y-3 list-none">
+                    <li class="flex items-center"><span class="mr-2 text-orange-industrial">▹</span> Réalisation de schémas techniques et nomenclatures.</li>
+                    <li class="flex items-center"><span class="mr-2 text-orange-industrial">▹</span> Support technique pour la production et gestion AutoCAD.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="formations" class="relative z-10 bg-[#0f0f0f]/80 py-32 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-black mb-16 reveal uppercase italic text-right">/ Formations <span class="orange-accent">clés</span></h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-black/40 p-10 border border-white/5 reveal">
+                    <span class="orange-accent font-black text-xs uppercase tracking-widest">Diplôme</span>
+                    <h3 class="text-xl font-bold mt-2">BTS CONCEPTION DE PRODUITS INDUSTRIELS</h3>
+                    <p class="text-gray-500 mt-2">Lycée Technique • 2020</p>
+                </div>
+                <div class="bg-black/40 p-10 border border-white/5 reveal">
+                    <span class="orange-accent font-black text-xs uppercase tracking-widest">Diplôme</span>
+                    <h3 class="text-xl font-bold mt-2">BAC PRO EDPI</h3>
+                    <p class="text-gray-500 mt-2">Étude et Définition de Produits • 2018</p>
+                </div>
+                <div class="bg-black/40 p-10 border border-white/5 reveal">
+                    <span class="orange-accent font-black text-xs uppercase tracking-widest">Diplôme</span>
+                    <h3 class="text-xl font-bold mt-2">BAC PRO EDPI</h3>
+                    <p class="text-gray-500 mt-2">Étude et Définition de Produits • 2018</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv" class="relative z-10 max-w-4xl mx-auto py-32 px-6 text-center">
+        <div class="reveal bg-[#161616] p-12 border-2 border-dashed border-white/10">
+            <h2 class="text-3xl font-black mb-8 uppercase tracking-tighter">Accéder au <span class="orange-accent">Dossier Technique</span></h2>
+            <div class="w-40 h-56 bg-gradient-to-br from-gray-800 to-black mx-auto mb-10 shadow-2xl flex items-center justify-center border border-white/10 group overflow-hidden">
+                
+                <iframe src="cv.pdf#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="100%" style="border:none;"></iframe>
+            </div>
+            <a href="cv.pdf" download="CV_Elyot_Benard.pdf" target="_blank" class="inline-block bg-white text-black font-black px-12 py-4 rounded-none hover:bg-orange-industrial hover:text-white transition-all">
+                TÉLÉCHARGER LE CV
+            </a>
+            <a href="cv.pdf" onclick="printPDF(event)" class="inline-block bg-white text-black font-black px-12 py-4 hover:bg-orange-industrial hover:text-white transition-all">
+                IMPRIMER LE CV
+            </a>
+        </div>
+    </section>
+
+    <footer id="contact" class="relative z-10 py-24 border-t border-white/10 bg-black text-center">
+        <h2 class="text-5xl font-black mb-12 italic uppercase">CONTACT<span class="orange-accent">.</span></h2>
+        <div class="flex justify-center space-x-8 md:space-x-16">
+            <a href="mailto:elyot.benard@orange.fr" class="text-gray-400 hover:text-[#ff6600] font-bold uppercase tracking-widest text-sm transition">Email</a>
+            <a href="#" class="text-gray-400 hover:text-[#ff6600] font-bold uppercase tracking-widest text-sm transition">LinkedIn</a>
+            <a href="#" class="text-gray-400 hover:text-[#ff6600] font-bold uppercase tracking-widest text-sm transition">Portfolio</a>
+        </div>
+        <p class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest">© 2026 Elyot Benard • Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Gestion de l'effet de lueur (Glow)
+        const glow = document.getElementById('glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.setProperty('--x', e.clientX + 'px');
+            glow.style.setProperty('--y', e.clientY + 'px');
+        });
+
+        // Animation d'apparition au scroll (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Décalage d'animation pour les cartes
+        document.querySelectorAll('.exp-card').forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.1}s`;
+        });
+
+        const highlight = document.querySelector('.grid-highlight');
+
+        window.addEventListener('mousemove', (e) => {
+            // On met à jour les variables utilisées par le mask-image du CSS
+            document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+        });
+
+        function printPDF(event) {
+            event.preventDefault(); // Empêche l'ouverture classique du lien
+            const pdfUrl = 'cv.pdf';
+            const printWindow = window.open(pdfUrl, '_blank');
+            
+            // On attend que le PDF soit chargé pour lancer l'impression
+            printWindow.onload = function() {
+                printWindow.print();
+            };
+        }
+    </script>
+</body>
+</html>
