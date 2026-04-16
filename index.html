@@ -185,10 +185,7 @@
                 
                 <iframe src="cv.pdf#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="100%" style="border:none;"></iframe>
             </div>
-            <a href="cv.pdf" download="CV_Elyot_Benard.pdf" target="_blank" class="inline-block bg-white text-black font-black px-12 py-4 rounded-none hover:bg-orange-industrial hover:text-white transition-all">
-                TÉLÉCHARGER LE CV
-            </a>
-            <a href="cv.pdf" onclick="printPDF(event)" class="inline-block bg-white text-black font-black px-12 py-4 hover:bg-orange-industrial hover:text-white transition-all">
+            <a href="cv.pdf" target="_black" class="inline-block bg-white text-black font-black px-12 py-4 hover:bg-orange-industrial hover:text-white transition-all">
                 IMPRIMER LE CV
             </a>
         </div>
@@ -237,16 +234,6 @@
             document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
         });
 
-        function printPDF(event) {
-            event.preventDefault(); // Empêche l'ouverture classique du lien
-            const pdfUrl = 'cv.pdf';
-            const printWindow = window.open(pdfUrl, '_blank');
-            
-            // On attend que le PDF soit chargé pour lancer l'impression
-            printWindow.onload = function() {
-                printWindow.print();
-            };
-        }
     </script>
 </body>
 </html>
