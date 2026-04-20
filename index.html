@@ -78,6 +78,10 @@
         }
 
         .nav-main { background: rgba(0,0,0,0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        nav img {
+            filter: grayscale(0.2); /* Pour qu'il ne soit pas trop "flashy" par rapport au texte */
+            border-radius: 4px;
+        }
         .c-orange { color: var(--accent); }
         .bg-c-orange { background-color: var(--accent); }
         .b-orange { border-color: var(--accent); }
@@ -229,6 +233,7 @@
         }
     </style>
 </head>
+
 <div class="load-screen">
     <h1 class="text-5xl md:text-8xl font-black mb-6 leading-none uppercase">Élyot <br><span class="c-orange">BÉNARD </span></h1>
     <div class="load-wrap">
@@ -236,15 +241,22 @@
         <p class="load-txt">INITIALISATION DES PLANS... <span id="percent">0</span>%</p>
     </div>
 </div>
+
 <body class="relative">
     <div class="base-grid"></div>
-    <div class="active-lines"></div>
-    
+    <div class="active-lines"></div>    
     
  <!-- Menu -->
     <nav class="fixed top-0 w-full z-50 nav-main">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-xl tracking-tighter uppercase">Élyot <span class="c-orange">BÉnard </span></span>
+            <div class="flex items-center gap-4">
+                <span class="font-bold text-xl tracking-tighter uppercase">Élyot <span class="c-orange">BÉnard </span></span>
+                
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/elyotbenard/portfolio.git&count_bg=%239836E2&title_bg=%23161616&icon=&icon_color=%23E7E7E7&title=VISITES&edge_flat=false" 
+                    alt="Compteur de vues" 
+                    class="h-5 opacity-80 hover:opacity-100 transition-opacity">
+            </div>
+
             <div class="hidden md:flex space-x-8 text-xs uppercase font-bold tracking-widest">
                 <a href="#exp" class="hover:text-white transition opacity-70 hover:opacity-100">Éxpériences </a>
                 <a href="#edu" class="hover:text-white transition opacity-70 hover:opacity-100">Formations </a>
