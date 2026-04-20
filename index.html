@@ -6,6 +6,7 @@
     <title>Portfolio | Elyot Benard - Dessinateur Industriel - DraftsMan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --accent: #9836e2;
@@ -36,8 +37,8 @@
             z-index: -1;
             pointer-events: none;
             background-image: 
-                linear-gradient(to right, var(--accent) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--accent) 1px, transparent 1px);
+                linear-gradient(to right, var(--accent), #c78ef6 1px, transparent 1px),
+                linear-gradient(to bottom, var(--accent), #c78ef6 1px, transparent 1px);
             background-size: 55px 55px;
             -webkit-mask-image: radial-gradient(circle 90px at var(--px, 0) var(--py, 0), black 0%, transparent 100%);
             mask-image: radial-gradient(circle 85px at var(--px, 0) var(--py, 0), black 0%, transparent 100%);
@@ -80,16 +81,22 @@
         .bg-c-orange { background-color: var(--accent); }
         .b-orange { border-color: var(--accent); }
 
-        /* Écran de chargement */
+        /* Écran de chargement - Retour version stable */
         .load-screen {
             position: fixed;
             inset: 0;
             z-index: 999;
             background: #110618;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.6s ease, visibility 0.6s;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .load-screen.hide {
+            opacity: 0;
+            visibility: hidden;
         }
 
         .mt-03{
@@ -114,11 +121,6 @@
             text-transform: uppercase;
         }
 
-        /* masque apres chargement*/
-        .load-screen.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
 
         .scroll-arrow {
             display: inline-block;
@@ -146,9 +148,91 @@
             }
         }
 
+        /* Personnalisation Chrome, Edge, safari */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent); 
+        }
+
+        /*firefox*/
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #2A2A2A #0A0A0A;
+        }
+
+        .c-orange {
+            /* degradé*/
+            background: linear-gradient(to right, var(--accent), #c27ff8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            padding-right: 0.1em; 
+            margin-right: -0.1em;
+        }
+
+        /* Conteneur pour positionner les particules par rapport à la flèche */
+        .scroll-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Style de base d'une particule */
+        .particle {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-200%);
+            color: var(--accent);
+            font-size: 25px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Animation des particules synchronisée avec le bounce (2s) */
+        /* On déclenche l'éclaboussure à 40% (moment du point haut/impact virtuel) */
+        .p1 { animation: splash 2s infinite; }
+        .p2 { animation: splash 2s infinite 0.05s; }
+        .p3 { animation: splash 2s infinite 0.1s; }
+
+        @keyframes splash {
+            0%, 38% { transform: translate(-50%, 0) scale(0); opacity: 0; }
+            45% { opacity: 1; }
+            55%, 100% { 
+                transform: translate(var(--twx), var(--twy)) scale(1); 
+                opacity: 0; 
+            }
+        }
+
+        .stripe {
+            position: relative;
+            display: inline-block;
+            color: white;
+            z-index: 1;
+            border-color: var(--accent);            
+        }
+
+        .stripe::after {
+            content: "DESSINATEUR"; /* Doit être identique au texte de la span */
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;           
+            background: repeating-linear-gradient( 45deg, #333333, #333333 1px, transparent 1px, transparent 15px);            
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            pointer-events: none;
+        }
     </style>
 </head>
 <div class="load-screen">
+    <h1 class="text-5xl md:text-8xl font-black mb-6 leading-none uppercase">Élyot <br><span class="c-orange">BÉNARD </span></h1>
     <div class="load-wrap">
         <div class="load-bar"></div>
         <p class="load-txt">INITIALISATION DES PLANS... <span id="percent">0</span>%</p>
@@ -162,12 +246,12 @@
  <!-- Menu -->
     <nav class="fixed top-0 w-full z-50 nav-main">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-xl tracking-tighter uppercase">Elyot <span class="c-orange">Benard</span></span>
+            <span class="font-bold text-xl tracking-tighter uppercase">Élyot <span class="c-orange">BÉnard </span></span>
             <div class="hidden md:flex space-x-8 text-xs uppercase font-bold tracking-widest">
-                <a href="#exp" class="hover:text-white transition opacity-70 hover:opacity-100">Expériences</a>
-                <a href="#edu" class="hover:text-white transition opacity-70 hover:opacity-100">Formations</a>
-                <a href="#cv" class="hover:text-white transition opacity-70 hover:opacity-100">CV</a>
-                <a href="#contact" class="c-orange">Contact</a>
+                <a href="#exp" class="hover:text-white transition opacity-70 hover:opacity-100">Éxpériences </a>
+                <a href="#edu" class="hover:text-white transition opacity-70 hover:opacity-100">Formations </a>
+                <a href="#cv" class="hover:text-white transition opacity-70 hover:opacity-100">CV </a>
+                <a href="#contact" class="c-orange">Contact </a>
             </div>
         </div>
     </nav>
@@ -175,8 +259,8 @@
  <!-- Texte intro -->
     <section class="h-screen flex flex-col justify-center items-center text-center px-6">
         <div class="on-view visible">
-            <span class="inline-block px-3 py-1 border b-orange text-[12px] font-bold tracking-[0.3em] uppercase mb-6 c-orange" id="span-bloc1">Portfolio Technique</span>
-            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-none uppercase">DESSINATEUR <br><span class="c-orange">INDUSTRIEL</span></h1>
+            <span class="inline-block px-3 py-1 border b-orange text-[12px] font-bold tracking-[0.3em] uppercase mb-6" id="span-bloc1">Portfolio Technique</span>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-none uppercase"><span class="stripe" data-text="DESSINATEUR">DESSINATEUR</span> <br><span class="c-orange">INDUSTRIEL</span></h1>
             <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
                 Conception mécanique, modélisation 3D, mise en plan.
             </p>
@@ -187,24 +271,32 @@
                 </p>
             </div>
             <div class="mt-03">
+                <div class="scroll-container">
+                    <span class="particle p1" style="--twx: -30px; --twy: -20px;">▹</span>
+                    <span class="particle p2" style="--twx: 0px; --twy: -40px;">▹</span>
+                    <span class="particle p3" style="--twx: 30px; --twy: -20px;">▹</span>
                     <a href="#exp" class="scroll-arrow">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
                         </svg>
                     </a>
+                </div>
             </div>
         </div>
     </section>
 
  <!-- Expériences -->
     <section id="exp" class="max-w-5xl mx-auto py-32 px-6">
-        <h2 class="text-4xl font-black mb-16 on-view uppercase italic">/ Expériences <span class="c-orange">pro</span></h2>
+        <h2 class="text-4xl font-black mb-16 on-view uppercase italic">/ Expériences <span class="c-orange">pro </span> </h2>
         <div class="space-y-8">
             <div class="card-item p-8 on-view group">
                 <div class="flex flex-col md:flex-row justify-between mb-4">
                     <div>
                         <h3 class="text-2xl font-bold group-hover:c-orange transition-colors uppercase">DESSINATEUR INDUSTRIEL - Apprentissage</h3>
-                        <p class="text-gray-400 font-medium">Barbas & Plailly - 41</p>
+                        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-[#9836e2]/10 border border-[#9836e2]/30 w-fit mt-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#9836e2] shadow-[0_0_8px_#9836e2]"></span>
+                            <p href="http://www.fonderie-barbas.com/" class="text-[11px] font-bold uppercase tracking-wider text-gray-300">Barbas & Plailly - 41</p>
+                        </div>
                     </div>
                     <span class="c-orange font-bold md:text-right mt-2 md:mt-0">2024 - Présent</span>
                 </div>
@@ -257,7 +349,7 @@
         </div>
     </section>
 
- <!-- Documents PDF -->
+ <!-- Documents & CV -->
     <section id="cv" class="max-w-4xl mx-auto py-32 px-6 text-center">
         <div class="on-view bg-[#161616] p-12 border-2 border-dashed border-white/10">
             <!-- mettre un vrai rappel du CV directement ici pas de preview du pdf-->
@@ -265,20 +357,20 @@
                 <div>
                     <h3 class="text-main font-bold mb-6 text-sm tracking-[0.2em] uppercase">Expertise & Outils</h3>
                     <ul class="text-gray-400 space-y-4 text-sm">
-                        <li><span class="c-orange">■</span> <strong class="text-white">Métrologie :</strong> Contrôle de précision (Bras de scan et bras de mesure) </li>
-                        <li><span class="c-orange">■</span> <strong class="text-white">Conception :</strong> Dessins 2D/3D numériques et papier</li>
-                        <li><span class="c-orange">■</span> <strong class="text-white">Envie :</strong> j'aimerai apprendre la programmation d'usinage sur machines à commandes numériques</li>
-                        <li><span class="c-orange">■</span> <strong class="text-white">Normes :</strong> Gestion de conformité norme EN 9100 </li>
+                        <li><span class="c-orange">▹</span> <strong class="text-white">Métrologie :</strong> Contrôle de précision (Bras de scan et bras de mesure) </li>
+                        <li><span class="c-orange">▹</span> <strong class="text-white">Conception :</strong> Dessins 2D/3D numériques et papier</li>
+                        <li><span class="c-orange">▹</span> <strong class="text-white">Envie :</strong> j'aimerai apprendre la programmation d'usinage sur machines à commandes numériques</li>
+                        <li><span class="c-orange">▹</span> <strong class="text-white">Normes :</strong> Gestion de conformité norme EN 9100 </li>
                     </ul>
                 </div>
 
                 <div>
                     <h3 class="text-main font-bold mb-6 text-sm tracking-[0.2em] uppercase">Profil</h3>
                     <ul class="text-gray-400 space-y-4 text-sm">
-                        <li><span class="c-orange">■</span> <strong class="text-white">Localisation :</strong> Montoire-sur-le-Loir (41)</li>
-                        <li><span class="c-orange">■</span> <strong class="text-white">Permis :</strong> Véhiculé (Permis B et A2) </li>
-                        <li><span class="c-orange">■</span> <strong class="text-white">Langues :</strong> Français (maternel), Anglais (intermédiaire)</li>
-                        <li><span class="c-orange">■</span> <strong class="text-white">Personnailté :</strong> Curieux, méticuleux, assidu, ...</li>
+                        <li><span class="c-orange">▹</span> <strong class="text-white">Localisation :</strong> Montoire-sur-le-Loir (41)</li>
+                        <li><span class="c-orange">▹</span> <strong class="text-white">Permis :</strong> Véhiculé (Permis B et A2) </li>
+                        <li><span class="c-orange">▹</span> <strong class="text-white">Langues :</strong> Français (maternel), Anglais (intermédiaire)</li>
+                        <li><span class="c-orange">▹</span> <strong class="text-white">Personnailté :</strong> Curieux, méticuleux, assidu, ...</li>
                     </ul>
                 </div>
             </div>
@@ -292,12 +384,12 @@
     <footer id="contact" class="py-24 border-t border-white/10 bg-black text-center">
         <h2 class="text-5xl font-black mb-12 italic uppercase">CONTACT<span class="c-orange">.</span></h2>
         <div class="flex justify-center space-x-12">
-            <a href="mailto:elyot.benard@email.com" class="text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs transition">Email</a>
-            <a href="https://www.linkedin.com/in/elyot-benard-5467b63b6/" class="text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs transition">LinkedIn</a>
-            <a href="https://profile.indeed.com/?hl=fr_FR&co=FR&from=gnav-jobseeker-profile--profile-one-frontend" class="text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs transition">indeed</a>
+            <a href="mailto:elyot.benard@orange.fr" target="_blank" class="text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs transition">Email</a>
+            <a href="https://www.linkedin.com/in/elyot-benard-5467b63b6/" target="_blank" class="text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs transition">LinkedIn</a>
+            <a href="https://profile.indeed.com/?hl=fr_FR&co=FR&from=gnav-jobseeker-profile--profile-one-frontend" target="_blank" class="text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs transition">indeed</a>
 
         </div>
-        <p class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest">© 2026 E. Benard • Industrial-designer</p>
+        <p class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest">© 2026 E. Benard • Industrial-designer</p> <p class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest">made possible with © Github</p>
     </footer>
 
     
@@ -305,53 +397,52 @@
 
  <!-- JS -->
 <script>
-        // Mouse Tracking
-        window.addEventListener('mousemove', (e) => {
-            const root = document.documentElement;
-            root.style.setProperty('--px', `${e.clientX}px`);
-            root.style.setProperty('--py', `${e.clientY}px`);
+    // Mouse Tracking (Grille active)
+    window.addEventListener('mousemove', (e) => {
+        const root = document.documentElement;
+        root.style.setProperty('--px', `${e.clientX}px`);
+        root.style.setProperty('--py', `${e.clientY}px`);
+    });
+
+    // Intersection Observer (Apparition au scroll)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
+    }, { threshold: 0.1 });
 
-        // Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+    document.querySelectorAll('.on-view').forEach(el => observer.observe(el));
 
-        document.querySelectorAll('.on-view').forEach(el => observer.observe(el));
+    window.addEventListener('load', () => {
+        const screen = document.querySelector('.load-screen');
+        const bar = document.querySelector('.load-bar');
+        const txt = document.getElementById('percent');
+        let progress = 0;
 
-        // Delay Cards
-        document.querySelectorAll('.card-item').forEach((el, i) => {
-            el.style.transitionDelay = `${i * 0.15}s`;
-        });
-
-        window.addEventListener('load', () => {
-            const screen = document.querySelector('.load-screen');
-            const bar = document.querySelector('.load-bar');
-            const txt = document.getElementById('percent');
-            let progress = 0;
-
-            // Simulation de chargement technique
-            const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 15) + 5;
+        const interval = setInterval(() => {
+            // On garde ta progression aléatoire
+            progress += Math.floor(Math.random() * 12) + 5;
+            
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
                 
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    
-                    // On laisse 200ms à 100% pour le visuel
+                // Petit délai sur le 100% pour le confort visuel
+                setTimeout(() => {
+                    screen.classList.add('hide');
+                    // On retire du flux pour pouvoir cliquer sur le site
                     setTimeout(() => {
-                        screen.classList.add('hide');
-                    }, 200);
-                }
-                
-                bar.style.width = progress + '%';
-                txt.textContent = progress;
-            }, 80);
-        });
+                        screen.style.display = 'none';
+                    }, 600);
+                }, 400);
+            }
+            
+            bar.style.width = progress + '%';
+            txt.textContent = progress;
+        }, 80);
+    });
 </script>
 
 </html>
