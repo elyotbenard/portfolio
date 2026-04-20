@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Elyot Benard - Dessinateur Industriel - DraftsMan</title>
+    <link rel="icon" type="image/x-icon" href="favicon-p.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     
@@ -81,7 +82,7 @@
         .bg-c-orange { background-color: var(--accent); }
         .b-orange { border-color: var(--accent); }
 
-        /* Écran de chargement - Retour version stable */
+        /* Écran de chargement*/
         .load-screen {
             position: fixed;
             inset: 0;
@@ -148,7 +149,7 @@
             }
         }
 
-        /* Personnalisation Chrome, Edge, safari */
+        /* Personnalisation Chrome, Edge, safari  ça marche pas j'ai fais comme sur la doc ... à revoir*/
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -173,13 +174,11 @@
             margin-right: -0.1em;
         }
 
-        /* Conteneur pour positionner les particules par rapport à la flèche */
         .scroll-container {
             position: relative;
             display: inline-block;
         }
 
-        /* Style de base d'une particule */
         .particle {
             position: absolute;
             bottom: 0;
@@ -192,8 +191,7 @@
             z-index: -1;
         }
 
-        /* Animation des particules synchronisée avec le bounce (2s) */
-        /* On déclenche l'éclaboussure à 40% (moment du point haut/impact virtuel) */
+        /* explosion */
         .p1 { animation: splash 2s infinite; }
         .p2 { animation: splash 2s infinite 0.05s; }
         .p3 { animation: splash 2s infinite 0.1s; }
@@ -216,7 +214,7 @@
         }
 
         .stripe::after {
-            content: "DESSINATEUR"; /* Doit être identique au texte de la span */
+            content: "DESSINATEUR";
             position: absolute;
             left: 0;
             top: 0;
@@ -389,7 +387,7 @@
             <a href="https://profile.indeed.com/?hl=fr_FR&co=FR&from=gnav-jobseeker-profile--profile-one-frontend" target="_blank" class="text-gray-400 hover:text-white font-bold uppercase tracking-widest text-xs transition">indeed</a>
 
         </div>
-        <p class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest">© 2026 E. Benard • Industrial-designer</p> <p class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest">made possible with © Github</p>
+        <p class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest">© 2026 E. Benard • Industrial-designer</p> <p class="mt-20 text-[10px] text-gray-600 uppercase tracking-widest">published par © Github</p>
     </footer>
 
     
@@ -397,14 +395,13 @@
 
  <!-- JS -->
 <script>
-    // Mouse Tracking (Grille active)
+    // XY souris
     window.addEventListener('mousemove', (e) => {
         const root = document.documentElement;
         root.style.setProperty('--px', `${e.clientX}px`);
         root.style.setProperty('--py', `${e.clientY}px`);
     });
 
-    // Intersection Observer (Apparition au scroll)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -422,17 +419,14 @@
         let progress = 0;
 
         const interval = setInterval(() => {
-            // On garde ta progression aléatoire
             progress += Math.floor(Math.random() * 12) + 5;
             
             if (progress >= 100) {
                 progress = 100;
                 clearInterval(interval);
                 
-                // Petit délai sur le 100% pour le confort visuel
                 setTimeout(() => {
                     screen.classList.add('hide');
-                    // On retire du flux pour pouvoir cliquer sur le site
                     setTimeout(() => {
                         screen.style.display = 'none';
                     }, 600);
